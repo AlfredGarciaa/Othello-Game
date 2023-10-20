@@ -4,7 +4,6 @@ from board_marker import BoardMarker
 from settings import Settings
 from player import Player
 
-
 class Game:
     def __init__(self, board, human_starts):
         self.board = board
