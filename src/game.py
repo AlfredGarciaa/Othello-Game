@@ -8,11 +8,11 @@ class Game:
     def __init__(self, board, human_starts):
         self.board = board
         if human_starts:
-            self.player1 = Player("Computer", Settings.p1_token)
-            self.player2 = Player("Human", Settings.p2_token)
+            self.player1 = Player("COMPUTER", Settings.p1_token)
+            self.player2 = Player("HUMAN", Settings.p2_token)
         else:
-            self.player1 = Player("Human", Settings.p1_token)
-            self.player2 = Player("Computer", Settings.p2_token)
+            self.player1 = Player("HUMAN", Settings.p1_token)
+            self.player2 = Player("COMPUTER", Settings.p2_token)
 
         self.p1_time_in_each_move = []
         self.p2_time_in_each_move = []
@@ -92,11 +92,11 @@ class Game:
         p2_score = len(self.player2.tokens_on_board)
         print("Scores:")
         print(
-            f"Player: {self.player1.name}\t Score: {p1_score}\t Time response average: {sum(self.p1_time_in_each_move) / len(self.p1_time_in_each_move)} [microseconds]")
+            f"Player: {self.player1.name}\t Score: {p1_score}\t Time response average: {sum(self.p1_time_in_each_move) / len(self.p1_time_in_each_move)} [Microseconds]")
         # print(f"Player 1: Time in each turn: {self.p1_time_in_each_move}")
 
         print(
-            f"Player: {self.player2.name}\t Score: {p2_score}\t Time response average: {sum(self.p2_time_in_each_move) / len(self.p2_time_in_each_move)} [microseconds]")
+            f"Player: {self.player2.name}\t Score: {p2_score}\t Time response average: {sum(self.p2_time_in_each_move) / len(self.p2_time_in_each_move)} [Microseconds]")
         # print(f"Player 2: Time in each turn: {self.p2_time_in_each_move}")
 
         print(

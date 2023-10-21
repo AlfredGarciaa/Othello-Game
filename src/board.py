@@ -23,10 +23,10 @@ class Board:
             print("", i, "\n")
             i += 1
         print(Settings.letters_color)
-        print(f"Turn: {turn_number}\t Response Time of adversary: {response_time} [Seconds]")
+        print(f"[ TURN {turn_number} ] Response Time of adversary: {response_time} Seconds")
         print("Tokens on the board:")
-        print(f"{player_on_turn.token}: {len(player_on_turn.tokens_on_board)}")
-        print(f"{player_enemy.token}: {len(player_enemy.tokens_on_board)}")
+        print(f"white: {len(player_on_turn.tokens_on_board)}")
+        print(f"black: {len(player_enemy.tokens_on_board)}")
 
     def create_empty_board(self):
         self.cells = np.array([[Cell(Settings.empty_token, 100), Cell(Settings.empty_token,  0), Cell(Settings.empty_token, 70), Cell(Settings.empty_token), Cell(Settings.empty_token), Cell(Settings.empty_token, 70), Cell(Settings.empty_token, 0) , Cell(Settings.empty_token, 100)],

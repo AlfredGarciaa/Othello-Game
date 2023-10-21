@@ -1,0 +1,35 @@
+---------- RULES OF THE START ----------
+
+2 people
+8x8 board
+64 bicolor fuchas (two sides of different colors)
+
+Rows numbered 1 - 8
+Columns named A - H
+
+32 chips for each player (black side for one and white side for the other)
+
+Initial position:
+In the center of the board place 4 pieces. 2 white and 2 black
+bn
+n.b.
+
+
+---------- GAME RULES ----------
+
+A token is placed only on a space so that it is adjacent to an opposing token and that
+opposing piece is "flanked" or "sandwiched" with another of our pieces.
+You can "Flank" more than one piece, but you must at least "flank" one enemy piece.
+
+The game ends when it is no longer possible for any player to make moves.
+
+
+---------- STRATEGIES ----------
+
+There are strategies that can be applied to make movements that improve the results of
+a player.
+
+This helps us make our AI much more intelligent, without having to go through many
+state spaces of the game tree.
+
+https://service.mattel.com/instruction_sheets/B3165-SP.pdf
