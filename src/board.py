@@ -58,5 +58,3 @@ class Board:
                 self.cells[0][6].value = 90
                 self.cells[1][6].value = 90
                 self.cells[1][7].value = 90
-
-            

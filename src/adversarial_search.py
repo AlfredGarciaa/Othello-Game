@@ -17,9 +17,9 @@ class AdversarialSearch:
 
         if len(p_moves) > 1:
             heuristic_values = []
-            for a in deepcopy(unique_values):
+            for p_move in deepcopy(unique_values):
                 new_board = deepcopy(board)
-                new_move = deepcopy(a)
+                new_move = deepcopy(p_move)
                 new_enemy = deepcopy(player_enemy)
                 adv_search = AdversarialSearch._max_value(0, new_board, new_move, deepcopy(AdversarialSearch.computer ), new_enemy)
                 heuristic_values.append(adv_search)
@@ -30,7 +30,7 @@ class AdversarialSearch:
             return None
 
     @staticmethod
-    def _min_value(state, board, possible_moves, current_player, player_enemy):
+    def _min_value(depth, board, possible_moves, current_player, player_enemy):
         # print("Board received------------------------------------------")
         # board.display(0, 0, current_player, player_enemy)
 
@@ -38,27 +38,27 @@ class AdversarialSearch:
         # print("Board final------------------------------------------")
         # board.display(0, 0, current_player, player_enemy)
 
-        if AdversarialSearch._cut_off(state):
+        if AdversarialSearch._cut_off(depth):
             computer = current_player if current_player.token == AdversarialSearch.computer.token else player_enemy
             return - AdversarialSearch._eval(board, computer, possible_moves)
-        v = Settings.highest_value
+        value = Settings.highest_value
         p_moves = MoveHelper.get_possible_moves(player_enemy, board)
 
-        actions, _ = MoveHelper.get_unique_final_pos(p_moves)
-        for a in actions:
-            # print("state"---------------------------------------------")
+        unique_opt, _ = MoveHelper.get_unique_final_pos(p_moves)
+        for p_move in unique_opt:
+            # print("depth"---------------------------------------------")
             copied_enemy = deepcopy(player_enemy)
             copied_current_player = deepcopy(current_player)
             new_board = deepcopy(board)
-            new_possible_moves = deepcopy(a)
-            v = min(v, AdversarialSearch._max_value(state + 1, new_board, new_possible_moves, copied_enemy, copied_current_player))
-            if v <= AdversarialSearch.alpha:
-                return v
-            AdversarialSearch.beta = min(AdversarialSearch.beta, v)
-        return v
+            new_possible_moves = deepcopy(p_move)
+            value = min(value, AdversarialSearch._max_value(depth + 1, new_board, new_possible_moves, copied_enemy, copied_current_player))
+            if value <= AdversarialSearch.alpha:
+                return value
+            AdversarialSearch.beta = min(AdversarialSearch.beta, value)
+        return value
 
     @staticmethod
-    def _max_value(state, board, possible_moves, current_player, player_enemy):
+    def _max_value(depth, board, possible_moves, current_player, player_enemy):
         # print("Board received------------------------------------------")
         # board.display(0, 0, current_player, player_enemy)
 
@@ -66,26 +66,26 @@ class AdversarialSearch:
         # print("Board final------------------------------------------")
         # board.display(0, 0, current_player, player_enemy)
 
-        if AdversarialSearch._cut_off(state):
+        if AdversarialSearch._cut_off(depth):
             computer = current_player if current_player.token == AdversarialSearch.computer.token else player_enemy
             return - AdversarialSearch._eval(board, computer,possible_moves)
 
-        v = Settings.lowest_value
+        value = Settings.lowest_value
         p_moves = MoveHelper.get_possible_moves(player_enemy, board )
 
-        actions, _ = deepcopy(MoveHelper.get_unique_final_pos(p_moves))
+        unique_opt, _ = deepcopy(MoveHelper.get_unique_final_pos(p_moves))
 
-        for a in actions:
-            # print("state"---------------------------------------------")
+        for p_move in unique_opt:
+            # print("depth"---------------------------------------------")
             new_enemy = deepcopy(player_enemy)
             new_c_player = deepcopy(current_player)
             new_board = deepcopy(board)
-            new_possible_moves = deepcopy(a)
-            v = max(v, AdversarialSearch._min_value(state + 1, new_board, new_possible_moves, new_enemy, new_c_player))
-            if v >= AdversarialSearch.beta:
-                return v
-            AdversarialSearch.alpha = max(AdversarialSearch.alpha, v)
-        return v
+            new_possible_moves = deepcopy(p_move)
+            value = max(value, AdversarialSearch._min_value(depth + 1, new_board, new_possible_moves, new_enemy, new_c_player))
+            if value >= AdversarialSearch.beta:
+                return value
+            AdversarialSearch.alpha = max(AdversarialSearch.alpha, value)
+        return value
 
     @staticmethod
     def _eval(state, computer, possible_moves):

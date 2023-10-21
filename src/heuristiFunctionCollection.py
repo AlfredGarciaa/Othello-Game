@@ -6,7 +6,6 @@ class HeuristicFunctionCollection:
     def highest_score(state, computer, possible_moves):
         return len(computer.tokens_on_board)
 
-
     @staticmethod
     def strategic_place(state, computer, possible_moves):
         row, col = possible_moves[0].final_pos
