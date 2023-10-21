@@ -6,7 +6,10 @@ import numpy
 
 def display_options(player, options):
     indice = 1
-    print(player.name, "Choose one option, your token is ", player.token, ":")
+    if(player.token == "0"):
+        print("[", player.name, "]", " Choose one option, your token is ", "[BLACK]:")
+    else:
+        print("[", player.name, "]", " Choose one option, your token is ", "[WHITE]:")
     for opt in options:
         print(f"{indice}: {Settings.letters[opt[1]]} {opt[0] + 1}")
         indice += 1
@@ -33,7 +36,8 @@ class MovesManager:
                 # option_decided = numpy.random.randint(1, len(unique_opt) + 1)
 
             else:
-                option_decided = int(input())
+                option_decided = input("Choose number: ")
+                option_decided = int(option_decided)
                 #option_decided = numpy.random.randint(1, len(unique_opt) + 1)
                 #option_decided = 1
             print("choice:", option_decided)
